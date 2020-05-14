@@ -1,4 +1,4 @@
-# NoiseModel
+# ELD
 
 The implementation of CVPR 2020 (Oral) paper "[A Physics-based Noise Formation Model for Extreme Low-light Raw Denoising](https://arxiv.org/abs/2003.12751)"
 
