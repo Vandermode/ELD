@@ -359,11 +359,7 @@ class ELDModel(ELDModelBase):
 
     def print_network(self):
         print('--------------------- Model ---------------------')
-        print('##################### ISPNet #####################')
         networks.print_network(self.netG)
-        if self.isTrain and self.opt.lambda_gan > 0:
-            print('##################### NetD #####################')
-            networks.print_network(self.netD)
 
     def _eval(self):
         self.netG.eval()

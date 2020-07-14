@@ -16,6 +16,7 @@ class BaseOptions(Base):
         self.parser.add_argument('--stage_out', type=str, default='raw', help='output stage [raw|srgb]')
         self.parser.add_argument('--stage_eval', type=str, default='raw', help='output stage [raw|srgb]')
         self.parser.add_argument('--model_path', type=str, default=None, help='model checkpoint to use.')
+        self.parser.add_argument('--include', type=int, default=None, help='select camera in ELD dataset')
         # for network
         self.initialized = True
         self.isTrain = False

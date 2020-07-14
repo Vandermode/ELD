@@ -60,6 +60,8 @@ for i, img_ids in enumerate(img_ids_set):
     for camera, dataloader in zip(cameras, eval_dataloaders):
         print('Eval camera {}'.format(camera))
         # res = engine.eval(dataloader, dataset_name='eld_eval_{}'.format(camera), correct=True, crop=False, savedir='res-eld/{}_scene_{}'.format(camera, scene))
-        res = engine.eval(dataloader, dataset_name='eld_eval_{}'.format(camera), correct=True, crop=True)
+        
+        # we evaluate PSNR/SSIM on full size images
+        res = engine.eval(dataloader, dataset_name='eld_eval_{}'.format(camera), correct=True, crop=False)
         psnrs.append(res['PSNR'])
         ssims.append(res['SSIM'])

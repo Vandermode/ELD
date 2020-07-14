@@ -1,6 +1,8 @@
 # ELD
 
-The implementation of CVPR 2020 (Oral) paper "[A Physics-based Noise Formation Model for Extreme Low-light Raw Denoising](https://arxiv.org/abs/2003.12751)"
+The implementation of CVPR 2020 (Oral) paper "[A Physics-based Noise Formation Model for Extreme Low-light Raw Denoising](https://openaccess.thecvf.com/content_CVPR_2020/papers/Wei_A_Physics-Based_Noise_Formation_Model_for_Extreme_Low-Light_Raw_Denoising_CVPR_2020_paper.pdf)"
+
+***News*** (14/07/2020): Release the ELD dataset and our pretrained models at [GoogleDrive](https://drive.google.com/drive/folders/1CT2Ny9W9ArdSQaHNxC5hGwav9lZHoq)   
 
 
 ## Highlights
@@ -26,11 +28,19 @@ The implementation of CVPR 2020 (Oral) paper "[A Physics-based Noise Formation M
 
 
 ## Quick Start
-### 1. Preparing your training/testing datasets
+Due to the business license, we are unable to to provide the noise model as well as the calibration method. 
+Instead, we release our collected ELD dataset and our pretrained models to facilitate future research.
 
+To reproduce our results presented in the paper (Table 1 and 2), Please take a look at ```scripts/test_SID.sh``` and ```scripts/test_ELD.sh``` 
 
+More surprising results will be revealed in our journal version of this work in future.   
 
+## ELD Dataset
+The dataset capture protocol is shown as follow:
 
+ <img src="imgs/dataset.png" height="200px"/> 
+
+We choose three ISO settings (800, 1600, 3200) and three low light factors (x10, x100, x200) to capture the dataset (x10 is not used in our paper). Image ids 1, 6, 11, 16 represent the long-exposure reference images. Please refer to ```ELDEvalDataset``` class in ```data/sid_dataset.py``` for more details. 
 
 ## Citation
 
