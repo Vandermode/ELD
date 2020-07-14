@@ -1,0 +1,15 @@
+.vscode
+*.pyc
+*.pt
+__pycache__
+checkpoints
+bak
+*.zip
+*.png
+*.jpg
+*.bmp
+*.mat
+*.db
+aux
+remote
+*.avi
