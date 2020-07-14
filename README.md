@@ -19,6 +19,15 @@ The implementation of CVPR 2020 (Oral) paper "[A Physics-based Noise Formation M
 <img src="imgs/results.png" height="140px"/> 
 
 
+## Prerequisites
+* Python >=3.5, PyTorch >= 1.0.1
+* Requirements: opencv-python, tensorboardX
+* Platforms: Ubuntu 16.04, cuda-8.0
+
+
+## Quick Start
+### 1. Preparing your training/testing datasets
+
 
 
 
