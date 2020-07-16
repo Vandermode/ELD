@@ -249,50 +249,6 @@ def pack_raw_xtrans(raw):
     return out
 
 
-def generate_noisy_obs(y):
-    def sample_params():
-        # log_a = np.random.uniform(low=np.log(1e-4), high=np.log(1.2e-3))
-        log_a = np.random.uniform(low=np.log(1e-4), high=np.log(0.012))
-        log_b = np.random.standard_normal() * 0.26 + 2.18 * log_a
-        log_c = np.random.uniform(low=np.log(1e-9), high=np.log(1e-7))
-        log_d = np.random.uniform(low=np.log(1e-8), high=np.log(1e-6))
-        a = np.exp(log_a)
-        b = np.exp(log_b)
-        c = np.exp(log_c)
-        d = np.exp(log_d)
-        return a, b, c, d
-    
-    # sig_read = 10. ** np.random.uniform(low=-3., high=-1.5)
-    # sig_shot = 10. ** np.random.uniform(low=-2., high=-1.)
-    
-    ratio = np.random.uniform(low=100, high=300)
-    # ratio = 1
-    
-    a, b, c, d = sample_params()
-    chi = 1 / a
-    q = 1 / (2**14)
-    
-    y = y / ratio
-
-    # Burst denoising
-    # shot = np.random.randn(*y.shape).astype(np.float32) * np.sqrt(np.maximum(y, 1e-10)) * sig_shot
-    # read = np.random.randn(*y.shape).astype(np.float32) * sig_read
-    # z = y + shot + read
-    
-    if a > 1.2e-3:
-        z = np.random.poisson(chi*y).astype(np.float32) / chi
-    else:
-        z = y + np.random.randn(*y.shape).astype(np.float32) * np.sqrt(np.maximum(y*a, 1e-10))
-    
-    z = z + np.random.randn(*y.shape).astype(np.float32) * np.sqrt(np.maximum(b, 1e-10)) # Gaussian noise
-    z = z + np.random.randn(1, y.shape[1], 1).astype(np.float32) * np.sqrt(c) # banding noise
-    z = z + np.random.uniform(low=-0.5*q, high=0.5*q) # quantisation error
-
-    z = z * ratio
-
-    return z
-
-
 class ELDEvalDataset(BaseDataset):
     def __init__(self, basedir, camera_suffix, scenes=None, img_ids=None):
         super(ELDEvalDataset, self).__init__()
@@ -325,21 +281,12 @@ class ELDEvalDataset(BaseDataset):
         iso, expo = metainfo(input_path)
 
         ratio = target_expo / (iso * expo)
-
-        # if input_path not in self.input_dict:
-        #     with rawpy.imread(input_path) as raw:
-        #         self.input_dict[input_path] = pack_raw(raw) * ratio
         
         with rawpy.imread(input_path) as raw:
             input = pack_raw_bayer(raw) * ratio            
 
-        # if target_path not in self.target_dict:
         with rawpy.imread(target_path) as raw:
             target = pack_raw_bayer(raw)
-            # self.target_dict[target_path] = pack_raw_bayer(raw)
-
-        # input = self.input_dict[input_path]
-        # target = self.target_dict[target_path]
 
         input = np.maximum(np.minimum(input, 1.0), 0)
         target = np.maximum(np.minimum(target, 1.0), 0)
