@@ -31,14 +31,15 @@ The implementation of CVPR 2020 (Oral) paper "[A Physics-based Noise Formation M
 Due to the business license, we are unable to to provide the noise model as well as the calibration method. 
 Instead, we release our collected ELD dataset and our pretrained models to facilitate future research.
 
-To reproduce our results presented in the paper (Table 1 and 2), Please take a look at ```scripts/test_SID.sh``` and ```scripts/test_ELD.sh``` 
+To reproduce our results presented in the paper (Table 1 and 2), please run ```ELD_preprocess.py``` first to standardize the file names of the ELD dataset
+and then take a look at ```scripts/test_SID.sh``` and ```scripts/test_ELD.sh``` 
 
 More surprising results will be revealed in our journal version of this work in future.   
 
 ## ELD Dataset
 The dataset capture protocol is shown as follow:
 
- <img src="imgs/dataset.png" height="200px"/> 
+ <img src="imgs/dataset.png" height="250px"/> 
 
 We choose three ISO settings (800, 1600, 3200) and four low light factors (x1, x10, x100, x200) to capture the dataset (x1/x10 is not used in our paper). Image ids 1, 6, 11, 16 represent the long-exposure reference images. Please refer to ```ELDEvalDataset``` class in ```data/sid_dataset.py``` for more details. 
 
