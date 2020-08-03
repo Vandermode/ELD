@@ -58,4 +58,6 @@ If you find our code helpful in your research or work please cite our paper.
 
 ## Contact
 If you find any problem, please feel free to contact me (kaixuan_wei at bit.edu.cn).
-A brief self-introduction is required, if you would like to get an in-depth help from me. 
+A brief self-introduction (including your name, affiliation and position) is required, if you would like to get an in-depth help from me. 
+I'd be glad to talk with you if more information (e.g. your personal website link) is attached. 
+**Note I would not reply to any impolite/aggressive email that violates the above criteria.**
