@@ -4,7 +4,7 @@ The implementation of CVPR 2020 (Oral) paper "[A Physics-based Noise Formation M
 
 
 ***News*** 
-* 2021/08/05: The comprehensive version of this work was accepted to *IEEE Transactions on Pattern Analysis and Machine Intelligence* 
+* 2021/08/05: The comprehensive version of this work was accepted to *IEEE Transactions on Pattern Analysis and Machine Intelligence* (TPAMI)
 * 2020/07/16: Release the ELD dataset and our pretrained models at [GoogleDrive](https://drive.google.com/drive/folders/1CT2Ny9W9ArdSQaHNxC5hGwav9lZHoqJa?usp=sharing) and [Baidudisk](https://pan.baidu.com/s/11ksugpPH5uyDL-Z6S71Q5g ) (0lby)
 
 
