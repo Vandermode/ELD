@@ -1,8 +1,12 @@
 # ELD
 
-The implementation of CVPR 2020 (Oral) paper "[A Physics-based Noise Formation Model for Extreme Low-light Raw Denoising](https://openaccess.thecvf.com/content_CVPR_2020/papers/Wei_A_Physics-Based_Noise_Formation_Model_for_Extreme_Low-Light_Raw_Denoising_CVPR_2020_paper.pdf)"
+The implementation of CVPR 2020 (Oral) paper "[A Physics-based Noise Formation Model for Extreme Low-light Raw Denoising](https://openaccess.thecvf.com/content_CVPR_2020/papers/Wei_A_Physics-Based_Noise_Formation_Model_for_Extreme_Low-Light_Raw_Denoising_CVPR_2020_paper.pdf)" and its journal version "[Physics-based Noise Modeling for Extreme Low-light Photography](https://arxiv.org/abs/2108.02158)" (to be appeared in TPAMI)
 
-***News*** (16/07/2020): Release the ELD dataset and our pretrained models at [GoogleDrive](https://drive.google.com/drive/folders/1CT2Ny9W9ArdSQaHNxC5hGwav9lZHoqJa?usp=sharing) and [Baidudisk](https://pan.baidu.com/s/11ksugpPH5uyDL-Z6S71Q5g ) (0lby)
+
+***News*** 
+* 2021/08/05: The comprehensive version of this work was accepted to *IEEE Transactions on Pattern Analysis and Machine Intelligence* 
+* 2020/07/16: Release the ELD dataset and our pretrained models at [GoogleDrive](https://drive.google.com/drive/folders/1CT2Ny9W9ArdSQaHNxC5hGwav9lZHoqJa?usp=sharing) and [Baidudisk](https://pan.baidu.com/s/11ksugpPH5uyDL-Z6S71Q5g ) (0lby)
+
 
 
 ## Highlights
@@ -33,8 +37,6 @@ Instead, we release our collected ELD dataset and our pretrained models to facil
 
 To reproduce our results presented in the paper (Table 1 and 2), please run ```ELD_preprocess.py``` first to standardize the file names of the ELD dataset
 and then take a look at ```scripts/test_SID.sh``` and ```scripts/test_ELD.sh``` 
-
-More surprising results will be revealed in our journal version of this work in future.   
 
 ## ELD Dataset
 The dataset capture protocol is shown as follow:
