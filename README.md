@@ -3,7 +3,7 @@
 The implementation of CVPR 2020 (Oral) paper "[A Physics-based Noise Formation Model for Extreme Low-light Raw Denoising](https://openaccess.thecvf.com/content_CVPR_2020/papers/Wei_A_Physics-Based_Noise_Formation_Model_for_Extreme_Low-Light_Raw_Denoising_CVPR_2020_paper.pdf)" and its journal version "[Physics-based Noise Modeling for Extreme Low-light Photography](https://arxiv.org/abs/2108.02158)" (to be appeared in TPAMI)
 
 
-***News*** 
+## :sparkles: News
 * 2021/08/05: The comprehensive version of this work was accepted to *IEEE Transactions on Pattern Analysis and Machine Intelligence* (TPAMI)
 * 2020/07/16: Release the ELD dataset and our pretrained models at [GoogleDrive](https://drive.google.com/drive/folders/1CT2Ny9W9ArdSQaHNxC5hGwav9lZHoqJa?usp=sharing) and [Baidudisk](https://pan.baidu.com/s/11ksugpPH5uyDL-Z6S71Q5g ) (0lby)
 
@@ -49,13 +49,21 @@ We choose three ISO settings (800, 1600, 3200) and four low light factors (x1, x
 
 If you find our code helpful in your research or work please cite our paper.
 
-```
- @inproceedings{wei2020physics,
-   title={A Physics-based Noise Formation Model for Extreme Low-light Raw Denoising},
-   author={Wei, Kaixuan and Fu, Ying and Yang, Jiaolong and Huang, Hua},
-   booktitle={IEEE Conference on Computer Vision and Pattern Recognition},
-   year={2020},
- }
+```bibtex
+@inproceedings{wei2020physics,
+  title={A Physics-based Noise Formation Model for Extreme Low-light Raw Denoising},
+  author={Wei, Kaixuan and Fu, Ying and Yang, Jiaolong and Huang, Hua},
+  booktitle={IEEE Conference on Computer Vision and Pattern Recognition},
+  year={2020},
+}
+
+@article{wei2021physics,
+  title={Physics-based Noise Modeling for Extreme Low-light Photography},
+  author={Wei, Kaixuan and Fu, Ying and Zheng, Yinqiang and Yang, Jiaolong},
+  journal={IEEE Transactions on Pattern Analysis and Machine Intelligence},
+  year={2021},
+  publisher={IEEE}
+}
 ```
 
 ## Contact
