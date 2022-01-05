@@ -1,9 +1,11 @@
 # ELD
 
-The implementation of CVPR 2020 (Oral) paper "[A Physics-based Noise Formation Model for Extreme Low-light Raw Denoising](https://openaccess.thecvf.com/content_CVPR_2020/papers/Wei_A_Physics-Based_Noise_Formation_Model_for_Extreme_Low-Light_Raw_Denoising_CVPR_2020_paper.pdf)" and its journal version "[Physics-based Noise Modeling for Extreme Low-light Photography](https://arxiv.org/abs/2108.02158)" (to be appeared in TPAMI)
+The implementation of CVPR 2020 (Oral) paper "[A Physics-based Noise Formation Model for Extreme Low-light Raw Denoising](https://openaccess.thecvf.com/content_CVPR_2020/papers/Wei_A_Physics-Based_Noise_Formation_Model_for_Extreme_Low-Light_Raw_Denoising_CVPR_2020_paper.pdf)" and its journal version "[Physics-based Noise Modeling for Extreme Low-light Photography](https://arxiv.org/abs/2108.02158)" (to be appeared in TPAMI)  
+We refer the interested readers to an insightful [Note](https://zhuanlan.zhihu.com/p/356933763) about this work in Zhihu (Chinese). 
 
 
 ## :sparkles: News
+* 2022/01/05: Replace the released ELD dataset by my local version of the dataset. We thank [@fenghansen](https://github.com/fenghansen) for pointing this out. Please refer to [this](https://github.com/Vandermode/ELD/issues/21) issue for more details. 
 * 2021/08/05: The comprehensive version of this work was accepted to *IEEE Transactions on Pattern Analysis and Machine Intelligence* (TPAMI)
 * 2020/07/16: Release the ELD dataset and our pretrained models at [GoogleDrive](https://drive.google.com/drive/folders/1CT2Ny9W9ArdSQaHNxC5hGwav9lZHoqJa?usp=sharing) and [Baidudisk](https://pan.baidu.com/s/11ksugpPH5uyDL-Z6S71Q5g ) (0lby)
 
@@ -67,7 +69,7 @@ If you find our code helpful in your research or work please cite our paper.
 ```
 
 ## Contact
-If you find any problem, please feel free to contact me (kaixuan_wei at bit.edu.cn).
+If you find any problem, please feel free to contact me (kxwei at princeton.edu ~~kaixuan_wei at bit.edu.cn~~).
 A brief self-introduction (including your name, affiliation and position) is required, if you would like to get an in-depth help from me. 
 I'd be glad to talk with you if more information (e.g. your personal website link) is attached. 
 **Note I would not reply to any impolite/aggressive email that violates the above criteria.**
