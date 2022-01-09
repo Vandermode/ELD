@@ -1,5 +1,5 @@
 """indexes"""
-from skimage.measure import compare_ssim, compare_psnr
+from skimage.metrics import structural_similarity, peak_signal_noise_ratio
 from functools import partial
 import numpy as np
 from skvideo.measure import strred
@@ -35,8 +35,8 @@ class Framewise(object):
         return bwindex
 
 
-compare_psnr_video = Framewise(partial(compare_psnr, data_range=255))
-compare_ssim_video = Framewise(partial(compare_ssim, data_range=255, multichannel=True))
+compare_psnr_video = Framewise(partial(peak_signal_noise_ratio, data_range=255))
+compare_ssim_video = Framewise(partial(structural_similarity, data_range=255, multichannel=True))
 
 
 def compare_ncc(x, y):
@@ -75,13 +75,12 @@ def local_error(correct, estimate, window_size, window_shift):
 
 def quality_assess(X, Y, data_range=255):
     # Y: correct; X: estimate
-    if X.ndim == 3:
-        psnr = compare_psnr(Y, X, data_range=data_range)
-        ssim = compare_ssim(Y, X, data_range=data_range, multichannel=True)
+    if X.ndim == 3:  # image
+        psnr = peak_signal_noise_ratio(Y, X, data_range=data_range)
+        ssim = structural_similarity(Y, X, data_range=data_range, multichannel=True)
         return {'PSNR':psnr, 'SSIM': ssim}
 
-    elif X.ndim == 4:
-
+    elif X.ndim == 4:  # video clip
         vpsnr = np.mean(compare_psnr_video(Y/data_range*255, X/data_range*255))
         vssim = np.mean(compare_ssim_video(Y/data_range*255, X/data_range*255))
 

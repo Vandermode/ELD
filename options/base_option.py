@@ -23,7 +23,7 @@ class BaseOptions():
 
         # for setting input
         self.parser.add_argument('--serial_batches', action='store_true', help='if true, takes images in order to make batches, otherwise takes them randomly')
-        self.parser.add_argument('--nThreads', default=8, type=int, help='# threads for loading data')        
+        self.parser.add_argument('--nThreads', default=8, type=int, help='# threads for loading data')
         self.parser.add_argument('--chop', action='store_true', help='enable forward_chop')
 
         # for display

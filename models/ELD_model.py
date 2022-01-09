@@ -4,14 +4,13 @@ import torch.nn.functional as F
 
 import os
 import numpy as np
-import itertools
 import fnmatch
 from collections import OrderedDict
 
 import util.util as util
 import util.index as index
 import models.networks as networks
-from models import arch
+from models import arch, losses
 
 from .base_model import BaseModel
 from PIL import Image
@@ -356,6 +355,7 @@ class ELDModel(ELDModelBase):
         self.iterations = 0
         self.device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
         self.corrector = IlluminanceCorrect()
+        self.CRF = None
 
     def print_network(self):
         print('--------------------- Model ---------------------')
@@ -369,6 +369,10 @@ class ELDModel(ELDModelBase):
 
     def initialize(self, opt):
         BaseModel.initialize(self, opt)
+
+        # init CRF function
+        if opt.crf:
+            self.CRF = process.load_CRF()
 
         if opt.stage_in == 'raw':
             in_channels = opt.channels
@@ -386,13 +390,34 @@ class ELDModel(ELDModelBase):
     
         self.netG = arch.__dict__[self.opt.netG](in_channels, out_channels).to(self.device)
         
-        # networks.init_weights(self.netG, init_type=opt.init_type) # using default initialization as EDSR
+        # networks.init_weights(self.netG, init_type=opt.init_type)  # using default initialization as EDSR
+
+        if self.isTrain:
+            # define loss functions
+            self.loss_dic = losses.init_loss(opt)
+
+            # initialize optimizers
+            self.optimizer_G = torch.optim.Adam(self.netG.parameters(), 
+                lr=opt.lr, betas=(opt.beta1, 0.999), weight_decay=opt.wd)
+
+            self._init_optimizer([self.optimizer_G])
 
         if opt.resume:
             self.load(self, opt.resume_epoch)
         
         if opt.no_verbose is False:
             self.print_network()
+
+    def backward_G(self):        
+        self.loss_G = 0
+        self.loss_pixel = None
+        
+        self.loss_pixel = self.loss_dic['pixel'].get_loss(
+            self.output, self.target)
+
+        self.loss_G += self.loss_pixel
+        
+        self.loss_G.backward()
 
     def forward(self):        
         input_i = self.input
@@ -440,6 +465,29 @@ class ELDModel(ELDModelBase):
             = outputs[3][:, :, (h_size - h + h_half):h_size, (w_size - w + w_half):w_size]
 
         return output
+
+    def optimize_parameters(self):
+        self._train()
+        self.forward()
+
+        self.optimizer_G.zero_grad()
+        self.backward_G()
+        self.optimizer_G.step()
+
+    def get_current_errors(self):
+        ret_errors = OrderedDict()
+        if self.loss_pixel is not None:
+            ret_errors['Pixel'] = self.loss_pixel.item()
+
+        return ret_errors
+
+    def get_current_visuals(self):
+        ret_visuals = OrderedDict()
+        ret_visuals['input'] = tensor2im(self.input, visualize=True).astype(np.uint8)
+        ret_visuals['output'] = tensor2im(self.output, visualize=True).astype(np.uint8)
+        ret_visuals['target'] = tensor2im(self.target, visualize=True).astype(np.uint8)
+
+        return ret_visuals       
 
     @staticmethod
     def load(model, resume_epoch=None):

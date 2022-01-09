@@ -57,9 +57,11 @@ class BaseModel():
         iterations = self.iterations
 
         if label is None:
-            model_name = os.path.join(self.save_dir, self.name() + '_%03d_%08d.pt' % ((epoch), (iterations)))
+            # model_name = os.path.join(self.save_dir, self.name() + '_%03d_%08d.pt' % ((epoch), (iterations)))
+            model_name = os.path.join(self.save_dir, 'model' + '_%03d_%08d.pt' % ((epoch), (iterations)))
         else:
-            model_name = os.path.join(self.save_dir, self.name() + '_' + label + '.pt')
+            # model_name = os.path.join(self.save_dir, self.name() + '_' + label + '.pt')
+            model_name = os.path.join(self.save_dir, 'model' + '_' + label + '.pt')
             
         torch.save(self.state_dict(), model_name)
 

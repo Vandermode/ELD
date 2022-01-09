@@ -11,7 +11,6 @@ class Engine(object):
     def __init__(self, opt):
         self.opt = opt
         self.writer = None
-        self.visualizer = None
         self.model = None
         self.best_val_loss = 1e6
         self.__setup()
@@ -52,15 +51,6 @@ class Engine(object):
             
             if not opt.no_log:
                 util.write_loss(self.writer, 'train', avg_meters, iterations)
-            
-                if iterations % opt.display_freq == 0 and opt.display_id != 0:
-                    save_result = iterations % opt.update_html_freq == 0
-                    self.visualizer.display_current_results(model.get_current_visuals(), epoch, save_result)
-
-                if iterations % opt.print_freq == 0 and opt.display_id != 0:
-                    t = (time.time() - iter_start_time)
-                    # self.visualizer.print_current_errors(epoch, i, errors, t)
-                    # self.visualizer.plot_current_errors(epoch, i/len(train_loader), opt, errors)                    
 
             self.iterations += 1
     
@@ -115,6 +105,11 @@ class Engine(object):
             for i, data in enumerate(test_loader):
                 model.test(data, savedir=savedir, **kwargs)
                 util.progress_bar(i, len(test_loader))
+
+    def set_learning_rate(self, lr):
+        for optimizer in self.model.optimizers:
+            print('[i] set learning rate to {}'.format(lr))
+            util.set_opt_param(optimizer, 'lr', lr)
 
     @property
     def iterations(self):

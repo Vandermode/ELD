@@ -9,7 +9,6 @@ import random
 class BaseOptions(Base):
     def initialize(self):
         Base.initialize(self)
-        # experiment specifics
         self.parser.add_argument('--netG', type=str, default='unet', help='chooses which architecture to use for netG.')
         self.parser.add_argument('--channels', '-c', type=int, default=4, help='in/out channels (4: bayer; 9: xtrans')
         self.parser.add_argument('--stage_in', type=str, default='raw', help='input stage [raw|srgb]')
@@ -17,7 +16,9 @@ class BaseOptions(Base):
         self.parser.add_argument('--stage_eval', type=str, default='raw', help='output stage [raw|srgb]')
         self.parser.add_argument('--model_path', type=str, default=None, help='model checkpoint to use.')
         self.parser.add_argument('--include', type=int, default=None, help='select camera in ELD dataset')
-        # for network
+        self.parser.add_argument('--gt_wb', action='store_true', help='use white balance of ground truth')
+        self.parser.add_argument('--crf', action='store_true', help='use CRF to render sRGB images')
+
         self.initialized = True
         self.isTrain = False
 

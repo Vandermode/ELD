@@ -1,10 +1,11 @@
 # ELD
 
-The implementation of CVPR 2020 (Oral) paper "[A Physics-based Noise Formation Model for Extreme Low-light Raw Denoising](https://openaccess.thecvf.com/content_CVPR_2020/papers/Wei_A_Physics-Based_Noise_Formation_Model_for_Extreme_Low-Light_Raw_Denoising_CVPR_2020_paper.pdf)" and its journal version "[Physics-based Noise Modeling for Extreme Low-light Photography](https://arxiv.org/abs/2108.02158)" (to be appeared in TPAMI)  
-We refer the interested readers to an insightful [Note](https://zhuanlan.zhihu.com/p/356933763) about this work in Zhihu (Chinese). 
+The implementation of CVPR 2020 (Oral) paper "[A Physics-based Noise Formation Model for Extreme Low-light Raw Denoising](https://openaccess.thecvf.com/content_CVPR_2020/papers/Wei_A_Physics-Based_Noise_Formation_Model_for_Extreme_Low-Light_Raw_Denoising_CVPR_2020_paper.pdf)" and its journal (TPAMI) version "[Physics-based Noise Modeling for Extreme Low-light Photography](https://arxiv.org/abs/2108.02158)".
+Interested readers are also referred to an insightful [Note](https://zhuanlan.zhihu.com/p/356933763) about this work in Zhihu (Chinese). 
 
 
 ## :sparkles: News
+* 2022/01/08: **Major Update**: Release the training code and other related items (including synthetic datasets, customized rawpy, calibrated camera noise parameters, baseline noise models, calibrated SonyA7S2 camera response function (CRF) and a modern implementation of [EMoR](https://ieeexplore.ieee.org/document/1323796) radiometric calibration method) to accelerate further research!
 * 2022/01/05: Replace the released ELD dataset by my local version of the dataset. We thank [@fenghansen](https://github.com/fenghansen) for pointing this out. Please refer to [this](https://github.com/Vandermode/ELD/issues/21) issue for more details. 
 * 2021/08/05: The comprehensive version of this work was accepted to *IEEE Transactions on Pattern Analysis and Machine Intelligence* (TPAMI)
 * 2020/07/16: Release the ELD dataset and our pretrained models at [GoogleDrive](https://drive.google.com/drive/folders/1CT2Ny9W9ArdSQaHNxC5hGwav9lZHoqJa?usp=sharing) and [Baidudisk](https://pan.baidu.com/s/11ksugpPH5uyDL-Z6S71Q5g ) (0lby)
@@ -28,17 +29,24 @@ We refer the interested readers to an insightful [Note](https://zhuanlan.zhihu.c
 
 
 ## Prerequisites
-* Python >=3.5, PyTorch >= 1.0.1
-* Requirements: opencv-python, tensorboardX
-* Platforms: Ubuntu 16.04, cuda-8.0
+* Python >=3.6, PyTorch >= 1.6
+* Requirements: opencv-python, tensorboardX, lmdb, rawpy, [torchinterp1d](https://github.com/aliutkus/torchinterp1d)
+* Platforms: Ubuntu 16.04, cuda-10.1
 
+**Notice this codebase relies on my own customized rawpy**, which provides more functionalities than the official one. 
+This is released together with our datasets and the pretrained models. 
+To build rawpy from source, please first compile and install the LibRaw library following the official [instructions](https://www.libraw.org/docs/Install-LibRaw-eng.html), then type ```pip install -e .``` in the rawpy directory. 
 
 ## Quick Start
 Due to the business license, we are unable to to provide the noise model as well as the calibration method. 
 Instead, we release our collected ELD dataset and our pretrained models to facilitate future research.
 
-To reproduce our results presented in the paper (Table 1 and 2), please run ```ELD_preprocess.py``` first to standardize the file names of the ELD dataset
-and then take a look at ```scripts/test_SID.sh``` and ```scripts/test_ELD.sh``` 
+To reproduce our results presented in the paper (Table 1 and 2), please take a look at ```scripts/test_SID.sh``` and ```scripts/test_ELD.sh``` 
+
+**Update:** (2022-01-08) We release the training code and the synthetic datasets per the users' requests. The training scripts and the user instructions can be found in ```scripts/train.sh```. Additionally, we provide the baseline noise models (G/G+P/G+P*) and the calibrated noise parameters for all cameras of ELD for training (see ```noise.py``` and ```train_syn.py```), which could serve as a starting point to develop your own noise model. 
+
+We use ```lmdb``` to prepare datasets, please refer to ```util/lmdb_data.py``` to see how we generate datasets from SID. 
+We also provide a new implementation of a classic radiometric calibration method [EMoR](https://ieeexplore.ieee.org/document/1323796), and utilize it to calibrate the CRF of SonyA7S2, which could be further used to simulate realistic on-board ISP as in the commercial SonyA7S2 camera.
 
 ## ELD Dataset
 The dataset capture protocol is shown as follow:

@@ -10,7 +10,6 @@ import scipy
 import scipy.io as spio
 import yaml
 from PIL import Image
-from torch.optim import lr_scheduler
 
 
 def get_config(config):

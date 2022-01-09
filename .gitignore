@@ -10,3 +10,10 @@ bak
 aux
 remote
 *.avi
+.rsyncignore
+.ssh
+data_syn.py
+noise_models.py
+data
+camera_params/V4
+plot.py

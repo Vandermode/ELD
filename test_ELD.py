@@ -1,34 +1,18 @@
-from os.path import join
-from options.eld.base_options import BaseOptions 
+from options.eld.base_options import BaseOptions
 from engine import Engine
 import torch
 import torch.backends.cudnn as cudnn
-import data.sid_dataset as datasets
-import util.util as util
-import data
-import glob
-import os
-from scipy.io import loadmat, savemat
+import dataset.sid_dataset as datasets
+
 
 opt = BaseOptions().parse()
 
 cudnn.benchmark = True
 
-if opt.debug:
-    opt.display_freq = 20
-    opt.print_freq = 20
-    opt.nEpochs = 40
-    opt.max_dataset_size = 10
-    opt.no_log = False
-    opt.nThreads = 0
-    opt.decay_iter = 0
-    opt.serial_batches = True
-    opt.no_flip = True
-
 """Main Loop"""
 engine = Engine(opt)
 
-databasedir = '/media/kaixuan/DATA/Papers/Code/Data/Raw/ELD'
+databasedir = './data/ELD'
 method = opt.name
 scenes = list(range(1, 10+1))
 cameras = ['CanonEOS5D4', 'CanonEOS70D', 'CanonEOS700D', 'NikonD850', 'SonyA7S2']     
@@ -43,6 +27,7 @@ else:
     suffixes = ['.CR2', '.CR2', '.nef', '.ARW']
 
 
+# img_ids_set = [[4, 9, 14]]
 img_ids_set = [[4, 9, 14], [5, 10, 15]]
 # for scene in scenes:
 for i, img_ids in enumerate(img_ids_set):

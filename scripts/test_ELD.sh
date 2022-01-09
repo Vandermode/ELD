@@ -4,5 +4,11 @@ python test_ELD.py --name sid-paired -r -re 200 --no-verbose --chop
 # inc1-4 denote the noise parameters are calibrated using the CanonEOS70D, CanonEOS700D, NikonD850, SonyA7S2 respectively. 
 python test_ELD.py --name sid-ours-inc4 -r -re 200 --no-verbose --include 4 --chop 
 python test_ELD.py --name sid-ours-inc3 -r -re 200 --no-verbose --include 3 --chop 
-python test_ELD.py --name sid-ours-inc1 -r -re 200 --no-verbose --include 1 --chop 
 python test_ELD.py --name sid-ours-inc2 -r -re 200 --no-verbose --include 2 --chop 
+python test_ELD.py --name sid-ours-inc1 -r -re 200 --no-verbose --include 1 --chop 
+
+# models trained on offline synthetic datasets
+python test_ELD.py --name sid-ours-sonya7s2 -r -re 200 --no-verbose --include 4 --chop 
+python test_ELD.py --name sid-ours-nikond850 -r -re 200 --no-verbose --include 3 --chop 
+python test_ELD.py --name sid-ours-canoneos700d -r -re 200 --no-verbose --include 2 --chop 
+python test_ELD.py --name sid-ours-canoneos70d -r -re 200 --no-verbose --include 1 --chop 
