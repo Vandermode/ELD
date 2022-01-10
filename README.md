@@ -8,7 +8,7 @@ Interested readers are also referred to an insightful [Note](https://zhuanlan.zh
 * 2022/01/08: **Major Update**: Release the training code and other related items (including synthetic datasets, customized rawpy, calibrated camera noise parameters, baseline noise models, calibrated SonyA7S2 camera response function (CRF) and a modern implementation of [EMoR](https://ieeexplore.ieee.org/document/1323796) radiometric calibration method) to accelerate further research!
 * 2022/01/05: Replace the released ELD dataset by my local version of the dataset. We thank [@fenghansen](https://github.com/fenghansen) for pointing this out. Please refer to [this](https://github.com/Vandermode/ELD/issues/21) issue for more details. 
 * 2021/08/05: The comprehensive version of this work was accepted to *IEEE Transactions on Pattern Analysis and Machine Intelligence* (TPAMI)
-* 2020/07/16: Release the ELD dataset and our pretrained models at [GoogleDrive](https://drive.google.com/drive/folders/1CT2Ny9W9ArdSQaHNxC5hGwav9lZHoqJa?usp=sharing) and [Baidudisk](https://pan.baidu.com/s/11ksugpPH5uyDL-Z6S71Q5g ) (0lby)
+* 2020/07/16: Release the ELD dataset and our pretrained models at [GoogleDrive](https://drive.google.com/drive/folders/1QoEhB1P-hNzAc4cRb7RdzyEKktexPVgy?usp=sharing) and [Baidudisk](https://pan.baidu.com/s/11ksugpPH5uyDL-Z6S71Q5g ) (0lby)
 
 
 
@@ -34,8 +34,8 @@ Interested readers are also referred to an insightful [Note](https://zhuanlan.zh
 * Platforms: Ubuntu 16.04, cuda-10.1
 
 **Notice this codebase relies on my own customized rawpy**, which provides more functionalities than the official one. 
-This is released together with our datasets and the pretrained models. 
-To build rawpy from source, please first compile and install the LibRaw library following the official [instructions](https://www.libraw.org/docs/Install-LibRaw-eng.html), then type ```pip install -e .``` in the rawpy directory. 
+This is released together with our datasets and the pretrained models (See [GoogleDrive](https://drive.google.com/drive/folders/1QoEhB1P-hNzAc4cRb7RdzyEKktexPVgy?usp=sharing) or [Baidudisk](https://pan.baidu.com/s/11ksugpPH5uyDL-Z6S71Q5g ) (0lby))
+To build rawpy from source, please first compile and install the LibRaw library following the official [instructions](https://www.libraw.org/docs/Install-LibRaw-eng.html), then type ```pip install -e .``` in the customized rawpy directory. 
 
 ## Quick Start
 Due to the business license, we are unable to to provide the noise model as well as the calibration method. 
