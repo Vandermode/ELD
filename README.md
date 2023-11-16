@@ -60,19 +60,22 @@ We choose three ISO settings (800, 1600, 3200) and four low light factors (x1, x
 If you find our code helpful in your research or work please cite our paper.
 
 ```bibtex
+@article{wei2021physics,
+  title={Physics-based noise modeling for extreme low-light photography},
+  author={Wei, Kaixuan and Fu, Ying and Zheng, Yinqiang and Yang, Jiaolong},
+  journal={IEEE Transactions on Pattern Analysis and Machine Intelligence},
+  volume={44},
+  number={11},
+  pages={8520--8537},
+  year={2021},
+  publisher={IEEE}
+}
+
 @inproceedings{wei2020physics,
   title={A Physics-based Noise Formation Model for Extreme Low-light Raw Denoising},
   author={Wei, Kaixuan and Fu, Ying and Yang, Jiaolong and Huang, Hua},
   booktitle={IEEE Conference on Computer Vision and Pattern Recognition},
   year={2020},
-}
-
-@article{wei2021physics,
-  title={Physics-based Noise Modeling for Extreme Low-light Photography},
-  author={Wei, Kaixuan and Fu, Ying and Zheng, Yinqiang and Yang, Jiaolong},
-  journal={IEEE Transactions on Pattern Analysis and Machine Intelligence},
-  year={2021},
-  publisher={IEEE}
 }
 ```
 
