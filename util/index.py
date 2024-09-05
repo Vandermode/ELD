@@ -77,7 +77,7 @@ def quality_assess(X, Y, data_range=255):
     # Y: correct; X: estimate
     if X.ndim == 3:  # image
         psnr = peak_signal_noise_ratio(Y, X, data_range=data_range)
-        ssim = structural_similarity(Y, X, data_range=data_range, multichannel=True)
+        ssim = structural_similarity(Y, X, data_range=data_range, multichannel=True, channel_axis = 2)
         return {'PSNR':psnr, 'SSIM': ssim}
 
     elif X.ndim == 4:  # video clip

@@ -79,7 +79,8 @@ class SIDDataset(BaseDataset):
 
         input_path = join(self.datadir, 'short', input_fn)
         target_path = join(self.datadir, 'long', target_fn)
-
+        #print(input_path, target_path)
+        #import pdb; pdb.set_trace()
         ratio = compute_expo_ratio(input_fn, target_fn)       
         CRF = self.CRF         
 
@@ -110,8 +111,9 @@ class SIDDataset(BaseDataset):
         else:
             with rawpy.imread(target_path) as raw_target:                    
                 target_image = self.pack_raw(raw_target)    
-                wb, ccm = process.read_wb_ccm(raw_target)
+                
                 if self.stage_out == 'srgb':
+                    wb, ccm = process.read_wb_ccm(raw_target)
                     target_image = process.raw2rgb(target_image, raw_target, CRF)
 
             with rawpy.imread(input_path) as raw_input:

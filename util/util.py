@@ -138,6 +138,7 @@ def get_summary_writer(log_dir):
         os.mkdir(log_dir)    
     log_dir = os.path.join(log_dir, datetime.now().strftime('%b%d_%H-%M-%S')+'_'+socket.gethostname())
     if not os.path.exists(log_dir):
+        print(log_dir)
         os.mkdir(log_dir)
     writer = SummaryWriter(log_dir)
     return writer
@@ -182,8 +183,14 @@ def write_loss(writer, prefix, avg_meters, iteration):
 """progress bar"""
 import socket
 
-_, term_width = os.popen('stty size', 'r').read().split()
-term_width = int(term_width)
+import platform
+#print(platform.system().lower())
+if platform.system().lower() == 'linux':
+    _, term_width = os.popen('stty size', 'r').read().split()
+    term_width = int(term_width)
+
+elif platform.system().lower() == 'windows':
+    term_width = 80
 
 TOTAL_BAR_LENGTH = 65.
 last_time = time.time()

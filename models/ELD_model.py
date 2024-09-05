@@ -60,6 +60,7 @@ def postprocess_bayer(rawpath, img4c):
     img_shape = raw.raw_image_visible.shape
     H = img_shape[0]
     W = img_shape[1]
+    #import pdb; pdb.set_trace()
 
     raw.raw_image_visible[R[0][0]:H:2, R[1][0]:W:2] = img4c[0, :,:]
     raw.raw_image_visible[G1[0][0]:H:2,G1[1][0]:W:2] = img4c[1, :,:]

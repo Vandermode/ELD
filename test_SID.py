@@ -8,9 +8,13 @@ import dataset
 
 opt = BaseOptions().parse()
 
+###windows nThread >4 will has multi-process issue.
+opt.nThreads=0
+
 cudnn.benchmark = True
 
 datadir = './data/SID/Sony'
+savedir = './data/eval'
 
 expo_ratio = [100, 250, 300]
 read_expo_ratio = lambda x: float(x.split('_')[-1][:-5])
@@ -39,11 +43,13 @@ eval_dataloaders = [torch.utils.data.DataLoader(
 """Main Loop"""
 engine = Engine(opt)
 
-for ratio, dataloader in zip(expo_ratio, eval_dataloaders):
-    print('Eval ratio {}'.format(ratio))
 
-    # Notice for SID dataset, we only evaluate the quantitative results based on the center 512x512 image regions (Enabled by 'crop=True')
-    # since we observe some fixed pattern noise appeared at the bottom corner of some pictures.
-    # We don't find such noise pattern in our ELD dataset (SonyA7S2 set), which uses the same camera model as SID dataset.
-    # As a result, we conjecture this fixed noise pattern might be caused by lens damage, which should be excluded in evaluation.
-    engine.eval(dataloader, dataset_name='sid_eval_{}'.format(ratio), correct=True, crop=True)
+if __name__ == '__main__':
+    for ratio, dataloader in zip(expo_ratio, eval_dataloaders):
+        print('Eval ratio {}'.format(ratio))
+
+        # Notice for SID dataset, we only evaluate the quantitative results based on the center 512x512 image regions (Enabled by 'crop=True')
+        # since we observe some fixed pattern noise appeared at the bottom corner of some pictures.
+        # We don't find such noise pattern in our ELD dataset (SonyA7S2 set), which uses the same camera model as SID dataset.
+        # As a result, we conjecture this fixed noise pattern might be caused by lens damage, which should be excluded in evaluation.
+        engine.eval(dataloader, dataset_name='sid_eval_{}'.format(ratio), correct=True, crop=False, savedir=savedir)
